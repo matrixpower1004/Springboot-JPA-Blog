@@ -3,15 +3,16 @@
 
 <div class="container">
 	<form>
+		<input type="hidden" id="topicId" value="${board.id }"/>
 		<div class="form-group">
-			<input type="text" class="form-control" placeholder="Enter Title" id="title">
+			<input value="${board.title }" type="text" class="form-control" placeholder="Enter Title" id="title">
 		</div>
 		<div class="form-group">
-			<textarea class="form-control summernote" rows="5" id="content"></textarea>
+			<textarea class="form-control summernote" rows="5" id="content">${board.content }</textarea>
 		</div>
 	</form>
 	<!-- json 요청을 위하여 버튼을 form 밖으로 이동 -->
-	<button id="btn-write" class="btn btn-primary">글쓰기완료</button>
+	<button id="btn-update" class="btn btn-primary">글수정완료</button>
 </div>
 <script>
 	$('.summernote').summernote({
