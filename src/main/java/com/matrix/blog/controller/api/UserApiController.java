@@ -23,8 +23,9 @@ public class UserApiController {
 //	@Autowired
 //	private HttpSession session; // 세션 객체를 스프링 컨테이너가 bean으로 등록해서 가지고 있도록
 	
+	//HttpSession session
 	@PostMapping("/auth/joinProc")
-	public ResponseDto<Integer> save(@RequestBody User user, HttpSession session) { // username, password, email
+	public ResponseDto<Integer> save(@RequestBody User user) { // username, password, email
 		System.out.println("UserApiController : save 호출됨");
 		userService.memberJoin(user); // 1이면 성공. -1이면 실패
 		// 실제로 DB에 insert를 하고 아래에서 return이 되면 되요.

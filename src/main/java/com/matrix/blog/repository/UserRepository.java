@@ -20,7 +20,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 // JpaRepository class의 save() function으로 insert와 update를 할 수 있다
 // 기본적인 CRUD는 이렇게만 만들어 두면 얘가 모든 함수를 다 들고 있게된다. 
 
-// JPA Namin 전략
+// JPA Naming 전략
 // SELECT * FROM user WHERE username = ? AND password = ?;
 // User findByUsernameAndPassword(String username, String password);
 

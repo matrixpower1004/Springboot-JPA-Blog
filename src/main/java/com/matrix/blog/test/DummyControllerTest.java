@@ -78,16 +78,23 @@ public class DummyControllerTest {
 	
 	// 한페이지당 2건에 데이터를 리턴받아 볼 예정
 	@GetMapping("/dummy/user")
-	public List<User> pageList(@PageableDefault(size=2, sort="id", direction=Sort.Direction.DESC) Pageable pagelable) {
+	public Page<User> pageList(@PageableDefault(size=2, sort="id", direction=Sort.Direction.DESC) Pageable pagelable) {
 		Page<User> pagingUser = userRepository.findAll(pagelable);
 		
 		List<User> users = pagingUser.getContent();
-		return users;
+		return pagingUser;
 	}
+	
 	// {id} 주소로 파라미터를 전달 받을 수 있음.
 	// http://localhost:8000/blog/dummy/user/3
 	@GetMapping("/dummy/user/{id}")
 	public User detail(@PathVariable int id) {
+		// 람다식으로 코드를 간결하게
+		User user = userRepository.findById(id).orElseThrow(()->{
+			return new IllegalArgumentException("해당 유저는 없습니다. id : ");
+		});	
+		return user;
+		
 		// user/4를 찾을 때 내가 데이터베이스에서 못찾아오게 되면 user값이 null이 될것 아냐?
 		// 그럼 return null이 리턴이 되니... 그럼 프로그램에 문제가 있지 않겠니?
 		// Optional로 너의 User객체를 감싸서 가져올테니 null인지 아닌지판단해서 return해!! 
@@ -116,12 +123,9 @@ public class DummyControllerTest {
 //			}
 //		});
 
-		// 람다식으로 코드를 간결하게
-		User user = userRepository.findById(id).orElseThrow(()->{
-			return new IllegalArgumentException("해당 유저는 없습니다. id : ");
-		});	
-		return user;
+
 	}
+	
 	
 	// http://localhost:8000/blog/dummy/join (요청)
 	// http의 body에 username, password, email 데이터를 가지고(요청)

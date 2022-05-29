@@ -39,8 +39,7 @@ public class Board {
 	@Lob	// 대용량 데이터
 	private String content;	// 섬머노트 라이브러리 <html> 태그가 섞여서 디자인이 됨. 데이터 용량이 상당히 커짐
 	
-	@ColumnDefault("0")	// 넘버값이라 홑따옴표'' 필요 없음. string 타입에는 ''(홑따옴표) 필요
-	private int count;	// 조회수\
+	private int count;	// 조회수
 	
 	@ManyToOne(fetch = FetchType.EAGER) // Many=Board, User=One (한 명의 유저는 여러개의 게시글을 쓸 수 있다)
 //	@OneToOne // 한 명의 유저는 하나의 게시글만 쓸 수 있다. Many=one, User=one
